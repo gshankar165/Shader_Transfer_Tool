@@ -16,7 +16,7 @@ It supports Centos, windows, Mac. I have not checked with red_hat linux yet.
 
 
 How it Works:
-1. support there is a lookdev completed char group or group of meshes in maya scene.
+1. suppose there is a lookdev completed char group or group of meshes in maya scene.
 you got rig/model updated char group from the other dep and you need to re assign
 2. shaders and mesh attributes (opaque, subdivisions).
 3. This tool will do all these work in seconds.

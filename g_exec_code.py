@@ -42,7 +42,7 @@ import os
 import maya.cmds as cmds
 
 # replace windows path here. Do not remove *r before quotation
-windows_path= r"D:\\DriveA\PycharmProjects\Shader_Transfer_Tool"
+windows_path= "r"+'"E:\Code_test\Shader_Transfer_Tool"'
 
 # if linux, replace the path here.11
 linux_path=    "/home/gssLinux/PycharmProjects/Shader_Transfer_Tool"

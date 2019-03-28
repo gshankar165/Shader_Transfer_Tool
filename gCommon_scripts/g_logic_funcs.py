@@ -47,15 +47,18 @@ def shader_transfer():
 
                 for e_obj in similar_objects:
                     gShape = gCommonFuncs(name=e_obj).get_shape_node()  # get the shape node of last splited string
-                    g_node = gCommonFuncs(name=gShape).get_sg_node()  # get the shading group name of the mesh shape
+                    if gShape!=None:
+                        for e_shape in gShape:
+                            if "Shape" in e_shape:                                
+                                    g_node = gCommonFuncs(name=e_shape).get_sg_node()  # get the shading group name of the mesh shape
 
-                    # match the mesh g_SG shading group to variable shading_grp. if not match, assign the xMaterial to the mesh
-                    if g_node == shading_grp:
-                        None
-                    else:
-                        print e_obj
-                        print xMaterial[0]
-                        gConnectFunc(name=e_obj).shader_assign(xShader=xMaterial[0])  # assign the shader to the new mesh
+                                    # match the mesh g_SG shading group to variable shading_grp. if not match, assign the xMaterial to the mesh
+                                    if g_node == shading_grp:
+                                        None
+                                    else:
+                                        print e_obj
+                                        print xMaterial[0]
+                                        gConnectFunc(name=e_obj).shader_assign(xShader=xMaterial[0])  # assign the shader to the new mesh
 
             else:
                 lambert_list.append(shape_node[0])

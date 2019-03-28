@@ -44,11 +44,12 @@ class gCommonFuncs(object):
         :return: string:: shader name of the given mesh shape
         '''
         conn_list= cmds.listConnections(self.name)
-        for e_obj in conn_list:
-            if "SG" in e_obj:
-                return e_obj
-            else:
-                continue
+        if conn_list!=None:
+            for e_obj in conn_list:
+                if "SG" in e_obj:
+                    return e_obj
+                else:
+                    continue
 
     def get_shader(self, name=None):
         '''

@@ -28,6 +28,7 @@ def mesh_attrib_transfer_btn(*arg):
     ui transfer button command
     :return: None
     '''
+    sel_objects=gCommonFuncs(name=None).get_live_mesh_sel()
     mesh_attrib_transfer(sel_objects)
     cmds.confirmDialog(title='Mesh Attribute Transfer Done', message='Process has been completed ', defaultButton='Yes')
 

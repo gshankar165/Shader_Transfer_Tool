@@ -84,11 +84,10 @@ def mesh_attrib_transfer(sel_objects):
     '''
 
     live_plugins= cmds.pluginInfo( query=True, listPlugins=True )
-
-    for e_msh in sel_objects:
-        shape_node = gCommonFuncs(name=e_msh).get_shape_node()  # get the shape node of mesh
-        chk_plugin= gCommonFuncs(name=live_plugins).plugin_chk()     # checking weather the mtoa plugin loaded or not.
-        if chk_plugin:
+    chk_plugin= gCommonFuncs(name=live_plugins).plugin_chk()     # checking weather the mtoa plugin loaded or not.
+    if chk_plugin:
+        for e_msh in sel_objects:
+            shape_node = gCommonFuncs(name=e_msh).get_shape_node()  # get the shape node of mesh        
             for e_attrib in attrib_list:
                 xAttrib= gConnectFunc(name=shape_node[0]).get_mesh_attrib(attrb=e_attrib)
                 g_msh = e_msh.split("|")[-1]
@@ -96,14 +95,14 @@ def mesh_attrib_transfer(sel_objects):
 
                 for t_msh in similar_objects:
                     xShape = gCommonFuncs(name=t_msh).get_shape_node() # get the shape node of last splited string
-                    zAttrib = gConnectFunc(name=xShape[0]).get_mesh_attrib(attrb=e_attrib)  # get the mesh attribute value4
-
-                    if zAttrib==xAttrib:
-                        None
-                    else:
-                        print xShape[0]+e_attrib
-                        print int(xAttrib)
-                        print "value changed"
-                        gConnectFunc(name=xShape[0]).set_mesh_attrib(attrb=e_attrib, value=int(xAttrib)) # update mesh attrtibuts
-        else:
-            cmds.warning("Arnold Plugin has not been loaded. Please load and redo the process")
+                    if xShape!=None:
+                        zAttrib = gConnectFunc(name=xShape[0]).get_mesh_attrib(attrb=e_attrib)  # get the mesh attribute value4
+                        if zAttrib==xAttrib:
+                            None
+                        else:
+                            print xShape[0]+e_attrib
+                            print int(xAttrib)
+                            print "value changed"
+                            gConnectFunc(name=xShape[0]).set_mesh_attrib(attrb=e_attrib, value=int(xAttrib)) # update mesh attrtibuts
+    else:
+        cmds.warning("Arnold Plugin has not been loaded. Please load and redo the process")

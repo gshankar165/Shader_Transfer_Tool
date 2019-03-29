@@ -41,8 +41,14 @@ def shader_transfer():
 
             if shading_grp:     # run if shading_grp return any shader else add shape_node to no lambert_shader list
                 xMaterial = gCommonFuncs(name=shading_grp).get_shader()  # get the shader name shading grp
-
-                g_mesh = e_mesh.split("|")[-1]
+                
+                if "|" in e_mesh:
+                    g_mesh = e_mesh.split("|")[-1]
+                    g_mesh= "|"+g_mesh
+                else:
+                    g_mesh = e_mesh.split(":")[-1]
+                    g_mesh= ":"+g_mesh
+                
                 similar_objects = gCommonFuncs(name=g_mesh).sel_similar_mesh()  # select similar meshes by the e_mesh name
 
                 for e_obj in similar_objects:
@@ -90,7 +96,12 @@ def mesh_attrib_transfer(sel_objects):
             shape_node = gCommonFuncs(name=e_msh).get_shape_node()  # get the shape node of mesh        
             for e_attrib in attrib_list:
                 xAttrib= gConnectFunc(name=shape_node[0]).get_mesh_attrib(attrb=e_attrib)
-                g_msh = e_msh.split("|")[-1]
+                if "|" in e_msh:
+                    g_msh = e_msh.split("|")[-1]
+                    g_msh= "|"+g_msh
+                else:
+                    g_msh = e_msh.split(":")[-1]
+                    g_msh= ":"+g_msh
                 similar_objects = gCommonFuncs(name=g_msh).sel_similar_mesh()  # select similar meshes by the e_mesh name
 
                 for t_msh in similar_objects:

@@ -107,13 +107,14 @@ def mesh_attrib_transfer(sel_objects):
                 for t_msh in similar_objects:
                     xShape = gCommonFuncs(name=t_msh).get_shape_node() # get the shape node of last splited string
                     if xShape!=None:
-                        zAttrib = gConnectFunc(name=xShape[0]).get_mesh_attrib(attrb=e_attrib)  # get the mesh attribute value4
-                        if zAttrib==xAttrib:
-                            None
-                        else:
-                            print xShape[0]+e_attrib
-                            print int(xAttrib)
-                            print "value changed"
-                            gConnectFunc(name=xShape[0]).set_mesh_attrib(attrb=e_attrib, value=int(xAttrib)) # update mesh attrtibuts
+                        if len(xShape) !=0:
+                            zAttrib = gConnectFunc(name=xShape[0]).get_mesh_attrib(attrb=e_attrib)  # get the mesh attribute value4
+                            if zAttrib==xAttrib:
+                                None
+                            else:
+                                print xShape[0]+e_attrib
+                                print int(xAttrib)
+                                print "value changed"
+                                gConnectFunc(name=xShape[0]).set_mesh_attrib(attrb=e_attrib, value=int(xAttrib)) # update mesh attrtibuts
     else:
         cmds.warning("Arnold Plugin has not been loaded. Please load and redo the process")

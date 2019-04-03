@@ -69,6 +69,12 @@ class gCommonFuncs(object):
         cmds.select(attrC)
         return cmds.ls(sl=True, tr=True)
 
+    def attr_exist(self, name=None):
+        '''
+        :param name: string:: mesh name
+        :return: array:: list of attributes exist in shape node
+        '''
+        return cmds.attributeMenu(self.name)
 
 class gConnectFunc(gCommonFuncs):
     '''

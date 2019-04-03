@@ -38,7 +38,7 @@ def main_window():
 
     cmds.columnLayout(columnAttach=('both', 5), rowSpacing=10, columnWidth=300)
     cmds.text(label='   ', align="left")
-    cmds.text(label='Select meshes and Click', align="left")
+    cmds.text(label='Select only old meshes and Click', align="left")
     cmds.button(label="Shader Transfer", command=(shader_transfer_btn))
     cmds.button(label="Mesh Attrib Transfer", command=(mesh_attrib_transfer_btn))
 

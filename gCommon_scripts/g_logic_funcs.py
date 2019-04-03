@@ -42,12 +42,12 @@ def shader_transfer():
             if shading_grp:     # run if shading_grp return any shader else add shape_node to no lambert_shader list
                 xMaterial = gCommonFuncs(name=shading_grp).get_shader()  # get the shader name shading grp
                 
-                if "|" in e_mesh:
-                    g_mesh = e_mesh.split("|")[-1]
-                    g_mesh= "|"+g_mesh
-                else:
+                if ":" in e_mesh:
                     g_mesh = e_mesh.split(":")[-1]
                     g_mesh= ":"+g_mesh
+                else:
+                    g_mesh = e_mesh.split("|")[-1]
+                    g_mesh= "|"+g_mesh
                 
                 similar_objects = gCommonFuncs(name=g_mesh).sel_similar_mesh()  # select similar meshes by the e_mesh name
 
@@ -96,25 +96,27 @@ def mesh_attrib_transfer(sel_objects):
             shape_node = gCommonFuncs(name=e_msh).get_shape_node()  # get the shape node of mesh        
             for e_attrib in attrib_list:
                 xAttrib= gConnectFunc(name=shape_node[0]).get_mesh_attrib(attrb=e_attrib)
-                if "|" in e_msh:
-                    g_msh = e_msh.split("|")[-1]
-                    g_msh= "|"+g_msh
-                else:
+                
+                if ":" in e_msh:
                     g_msh = e_msh.split(":")[-1]
                     g_msh= ":"+g_msh
+                else:
+                    g_msh = e_msh.split("|")[-1]
+                    g_msh= "|"+g_msh
                 similar_objects = gCommonFuncs(name=g_msh).sel_similar_mesh()  # select similar meshes by the e_mesh name
 
                 for t_msh in similar_objects:
                     xShape = gCommonFuncs(name=t_msh).get_shape_node() # get the shape node of last splited string
                     if xShape!=None:
                         if len(xShape) !=0:
-                            zAttrib = gConnectFunc(name=xShape[0]).get_mesh_attrib(attrb=e_attrib)  # get the mesh attribute value4
-                            if zAttrib==xAttrib:
-                                None
-                            else:
-                                print xShape[0]+e_attrib
-                                print int(xAttrib)
-                                print "value changed"
-                                gConnectFunc(name=xShape[0]).set_mesh_attrib(attrb=e_attrib, value=int(xAttrib)) # update mesh attrtibuts
+                            attr_exist= gCommonFuncs(name=xShape[0]).attr_exist()
+                            if "aiOverrideOpaque" in attr_exist:
+                                zAttrib = gConnectFunc(name=xShape[0]).get_mesh_attrib(attrb=e_attrib)  # get the mesh attribute value4
+                                if zAttrib==xAttrib:
+                                    None
+                                else:
+                                    print xShape[0]
+                                    print "value changed"
+                                    gConnectFunc(name=xShape[0]).set_mesh_attrib(attrb=e_attrib, value=int(xAttrib)) # update mesh attrtibuts
     else:
         cmds.warning("Arnold Plugin has not been loaded. Please load and redo the process")

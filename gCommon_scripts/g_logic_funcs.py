@@ -62,8 +62,8 @@ def shader_transfer():
                                     if g_node == shading_grp:
                                         None
                                     else:
-                                        print e_obj
-                                        print xMaterial[0]
+#                                        print e_obj
+#                                        print xMaterial[0]
                                         gConnectFunc(name=e_obj).shader_assign(xShader=xMaterial[0])  # assign the shader to the new mesh
 
             else:
@@ -115,8 +115,8 @@ def mesh_attrib_transfer(sel_objects):
                                 if zAttrib==xAttrib:
                                     None
                                 else:
-                                    print xShape[0]
-                                    print "value changed"
+#                                    print xShape[0]
+#                                    print "value changed"
                                     gConnectFunc(name=xShape[0]).set_mesh_attrib(attrb=e_attrib, value=int(xAttrib)) # update mesh attrtibuts
     else:
         cmds.warning("Arnold Plugin has not been loaded. Please load and redo the process")

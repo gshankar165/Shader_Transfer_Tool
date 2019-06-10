@@ -65,9 +65,9 @@ class gCommonFuncs(object):
         :param name: string:: mesh name
         :return: array:: list of meshes which does have *Shape string
         '''
-        attrC="*"+self.name+"*"
-        cmds.select(attrC)
-        return cmds.ls(sl=True, tr=True)
+        attrC="*"+self.name
+        pre_objs = cmds.ls(attrC)
+        return pre_objs
 
     def attr_exist(self, name=None):
         '''

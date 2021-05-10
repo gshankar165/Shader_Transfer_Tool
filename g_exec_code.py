@@ -43,20 +43,9 @@ import sys
 import os
 import maya.cmds as cmds
 
-# replace windows path here. Do not remove *r before quotation
-windows_path= "r"+'"E:\Code_test\Shader_Transfer_Tool"'
-
-# if linux, replace the path here.11
-linux_path=    "/home/gssLinux/PycharmProjects/Shader_Transfer_Tool"
-
-platform= sys.platform
-
-if "linux" in platform:
-    sys.path.append(linux_path)
-elif "darwin" in platform:
-    sys.path.append(linux_path)
-else:
-    sys.path.append(windows_path)
+#replace the shader library path in code path 
+code_path= "Path to Shader_Transfer_Tool"
+sys.path.append(code_path)
 
 
 from gCommon_scripts.g_common_funcs import gCommonFuncs
